@@ -45,3 +45,27 @@ function search(event) {
 
 let form = document.querySelector(".search-form");
 form.addEventListener("submit", search);
+
+function current(event) {
+  event.preventDefault();
+  let currentCity = document.querySelector("#current-location-button");
+  alert`${currentCity}`;
+}
+let button = document.querySelector(".current-location");
+button.addEventListener("current");
+
+function showTemperature(responce) {
+  let temperature = Math.round(responce.data.main.temp);
+  console.log(temperature);
+  console.log(responce);
+  let city = responce.data.name;
+  let message = `${temperature}˚ in ${city}`;
+  let h1 = document.querySelector("h1");
+  h1.innerHTML = message;
+}
+let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+let units = "metric";
+let city = "New York";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+
+axios.get(apiUrl).then(showTemperature);
