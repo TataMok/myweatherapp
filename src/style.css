@@ -24,14 +24,6 @@ li {
   list-style: none;
 }
 
-.weather-app {
-  border: 1px solid #dadde1;
-  padding: 15px;
-  margin: 20px auto;
-  border-radius: 10px;
-  max-width: 600px;
-}
-
 .weather-icon {
   height: 64px;
   width: 64px;
@@ -53,7 +45,7 @@ li {
 .search-form {
   margin-bottom: 20px;
 }
-#weather-app {
+.weather-app {
   background: linear-gradient(
     180deg,
     rgb(55, 198, 234) 0%,
