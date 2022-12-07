@@ -1,26 +1,3 @@
-let weather = {
-  paris: {
-    temp: 19.7,
-    humidity: 80,
-  },
-  tokyo: {
-    temp: 17.3,
-    humidity: 50,
-  },
-  lisbon: {
-    temp: 30.2,
-    humidity: 20,
-  },
-  "san francisco": {
-    temp: 20.9,
-    humidity: 100,
-  },
-  moscow: {
-    temp: -5,
-    humidity: 20,
-  },
-};
-
 let now = new Date();
 let li = document.querySelector("li");
 let date = now.getDate();
@@ -54,14 +31,14 @@ function current(event) {
 let button = document.querySelector(".current-location");
 button.addEventListener("current");
 
-function showTemperature(responce) {
-  let temperature = Math.round(responce.data.main.temp);
-  console.log(temperature);
-  console.log(responce);
-  let city = responce.data.name;
-  let message = `${temperature}˚ in ${city}`;
-  let h1 = document.querySelector("h1");
-  h1.innerHTML = message;
+function showTemperature(response) {
+  console.log(response.data);
+  let temperatureElement = document.querySelector("#temperature");
+  let cityElement = document.querySelector("#city");
+  let description = document.querySelector("#description");
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  cityElement.innerHTML = response.data.name;
+  description.innerHTML = response.data.name;
 }
 let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
 let units = "metric";
