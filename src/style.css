@@ -53,3 +53,13 @@ li {
 .search-form {
   margin-bottom: 20px;
 }
+#weather-app {
+  background: linear-gradient(
+    180deg,
+    rgb(55, 198, 234) 0%,
+    rgb(217, 147, 223) 100%
+  );
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 36px -15px rgba(0, 0, 0, 0.75);
+}
