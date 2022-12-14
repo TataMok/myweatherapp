@@ -8,21 +8,6 @@ let day = days[now.getDay()];
 
 li.innerHTML = `${day} ${date}, ${hours}:${minutes}`;
 
-function search(event) {
-  event.preventDefault();
-  let searchCity = document.querySelector("#search-text-input");
-  let city = document.querySelector("h1");
-  if (searchCity.value) {
-    city.innerHTML = `${searchCity.value}`;
-  } else {
-    city.innerHTML = null;
-    alert("Please type a city");
-  }
-}
-
-let form = document.querySelector(".search-form");
-form.addEventListener("submit", search);
-
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
@@ -44,8 +29,17 @@ function displayTemperature(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
+
+function search(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  console.log(cityInputElement);
+}
 let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
 let city = "New York";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=¢{position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
 
 axios.get(apiUrl).then(showTemperature);
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", search);
