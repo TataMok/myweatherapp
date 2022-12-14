@@ -1,12 +1,29 @@
-let now = new Date();
-let li = document.querySelector("li");
-let date = now.getDate();
-let hours = now.getHours();
-let minutes = now.getMinutes();
-let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-let day = days[now.getDay()];
+function dayTimeToday(dtt) {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
-li.innerHTML = `${day} ${date}, ${hours}:${minutes}`;
+  let day = days[dtt.getDay()];
+  let hour = dtt.getHours();
+  let minutes = dtt.getMinutes();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${day} ${hour}:${minutes}`;
+}
+let now = new Date();
+let displaydtt = document.querySelector("#time");
+displaydtt.innerHTML = dayTimeToday(now);
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
@@ -40,7 +57,7 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
-search(Tallinn);
+search("Tallinn");
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);

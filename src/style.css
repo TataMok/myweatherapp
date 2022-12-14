@@ -46,7 +46,10 @@ li {
 .search-form {
   margin-bottom: 20px;
 }
-.weather-app {
+div.container {
+    display: block;
+    margin: 100px auto;
+    max-width: 800px;
   background: linear-gradient(
     180deg,
     rgb(55, 198, 234) 0%,
