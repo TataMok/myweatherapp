@@ -1,63 +1,42 @@
-function dayTimeToday(dtt) {
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  let day = days[dtt.getDay()];
-  let hour = dtt.getHours();
-  let minutes = dtt.getMinutes();
-  if (hour < 10) {
-    hour = `0${hour}`;
-  }
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  return `${day} ${hour}:${minutes}`;
-}
 let now = new Date();
-let displaydtt = document.querySelector("#time");
-displaydtt.innerHTML = dayTimeToday(now);
+let li = document.querySelector("li");
+let date = now.getDate();
+let hours = now.getHours();
+let minutes = now.getMinutes();
+let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+let day = days[now.getDay()];
 
-function displayTemperature(response) {
-  let temperatureElement = document.querySelector("#temperature");
-  let cityElement = document.querySelector("#city");
-  let descriptionElement = document.querySelector("#description");
-  let humidityElement = document.querySelector("#humidity");
-  let windElement = document.querySelector("#wind");
-  let dateElement = document.querySelector("#date");
-  let iconElement = document.querySelector("#icon");
+li.innerHTML = `${day} ${date}, ${hours}:${minutes}`;
 
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
-  cityElement.innerHTML = response.data.name;
-  descriptionElement.innerHTML = response.data.weather[0].description;
-  humidityElement.innerHTML = response.data.main.humidity;
-  windElement.innerHTML = Math.round(response.data.wind.speed);
-  dateElement.innerHTML = formatData(response.data.dt * 1000);
-  iconElement.setAttribute(
-    "src",
-    `http://opnenweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  iconElement.setAttribute("alt", response.data.weather[0].description);
-}
-function search(city) {
-  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
-  let city = "Tallinn";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(showTemperature);
-}
-function handleSubmit(event) {
+function search(event) {
   event.preventDefault();
-  let cityInputElement = document.querySelector("#city-input");
-  search(cityInputElement.value);
-}
-search("Tallinn");
+  let apiKey = "ad793a6d772939c31783de5822791acf";
+  let city = document.querySelector("#search-text-input");
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=metric`;
 
-let form = document.querySelector("#search-form");
+  axios.get(apiUrl).then(displayWeatherCondition);
+  console.log(apiUrl);
+  let searchInput = document.querySelector("#search-text-input");
+  let h1 = document.querySelector("h1");
+  if (searchInput.value) {
+    h1.innerHTML = `Searching for ${searchInput.value}`;
+  } else {
+    h1.innerHTML = undefined;
+    alert("Please type a city");
+  }
+}
+let form = document.querySelector(".search-form");
 form.addEventListener("submit", search);
+console.log(form);
+
+function displayWeatherCondition(response) {
+  document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#currentTemperature").innerHTML = Math.round(
+    response.data.main.temp
+  );
+  console.log(response.data.main.temp);
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#windSpeed").innerHTML = Math.round(
+    response.data.wind.speed
+  );
+}

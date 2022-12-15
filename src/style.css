@@ -1,9 +1,6 @@
 body {
   font-family: arial, sans-serif;
 }
-
-
-
 div.container {
     display: block;
     margin: 100px auto;
@@ -24,7 +21,7 @@ form {
 
 h1 {
   color: white;
-  text-align: left;
+  text-align: center;
 }
 
 h3 {
