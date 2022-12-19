@@ -1,5 +1,8 @@
 body {
   font-family: arial, sans-serif;
+  color:antiquewhite;
+  background-image: url("https://images.pexels.com/photos/326058/pexels-photo-326058.jpeg?cs=srgb&dl=pexels-pixabay-326058.jpg&fm=jpg");
+
 }
 div.container {
     display: block;
