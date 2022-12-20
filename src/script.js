@@ -8,6 +8,28 @@ let day = days[now.getDay()];
 
 li.innerHTML = `${day} ${date}, ${hours}:${minutes}`;
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = "";
+
+  forecastHTML =
+    forecastHTML +
+    `
+  <div class="row row-3">
+            <div class="col">
+                <p>wed
+                    <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="" width="36" />
+                </p>
+                <div class="forecast-weather-1" id="forecast1">
+                    <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+                <div class="forecast-temp-top-1">-4°C</div>
+                <div class="forecast-temp-bottom-1">-7°C</div>
+            </div>
+            `;
+}
+
 function search(event) {
   event.preventDefault();
   let apiKey = "ad793a6d772939c31783de5822791acf";
@@ -39,4 +61,5 @@ function displayWeatherCondition(response) {
   document.querySelector("#windSpeed").innerHTML = Math.round(
     response.data.wind.speed
   );
+  displayForecast();
 }
