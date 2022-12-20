@@ -17,11 +17,37 @@ h1 {
   color: white;
   text-align: center;
 }
-.small-weather-1,
-.small-weather-2,
-.small-weather-3,
-.small-weather-4,
-.small-weather-5 {
+.forecast-weather-1,
+.forecast-weather-2,
+.forecast-weather-3,
+.forecast-weather-4,
+.forecast-weather-5 {
   font-size: 50px;
   padding: 10px 0 10px 0;
+}
+.forecast-weather-1,
+.forecast-weather-2,
+.forecast-weather-3,
+.forecast-weather-4,
+.forecast-weather-5 {
+  margin-top: 20px;
+  text-align: center;
+  color: aliceblue;
+}
+.forecast-temp-top-1,
+.forecast-temp-top-2,
+.forecast-temp-top-3,
+.forecast-temp-top-4,
+.forecast-temp-top-5 {
+  font-size: 16px;
+}
+.forecast-temp-bottom-1,
+.forecast-temp-bottom-2,
+.forecast-temp-bottom-3,
+.forecast-temp-bottom-4,
+.forecast-temp-bottom-5 {
+  font-size: 13px;
+}
+.forecast-weather-date {
+  font-size: 16px;
 }
