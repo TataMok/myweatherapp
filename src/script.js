@@ -11,7 +11,7 @@ li.innerHTML = `${day} ${date}, ${hours}:${minutes}`;
 function displayForecast() {
   let forecastElement = document.querySelector("#forecast");
 
-  let forecastHTML = "";
+  let forecastHTML = `<div class="row">`;
 
   forecastHTML =
     forecastHTML +
@@ -24,10 +24,76 @@ function displayForecast() {
                 <div class="forecast-weather-1" id="forecast1">
                     <i class="fa-solid fa-cloud-sun"></i>
                 </div>
-                <div class="forecast-temp-top-1">-4°C</div>
-                <div class="forecast-temp-bottom-1">-7°C</div>
+                <span class="forecast-temp-top-1">-4°C</span>
+                <span class="forecast-temp-bottom-1">-7°C</span>
             </div>
             `;
+
+  forecastHTML =
+    forecastHTML +
+    `
+  <div class="row row-3">
+            <div class="col">
+                <p>thu
+                    <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="" width="36" />
+                </p>
+                <div class="forecast-weather-1" id="forecast1">
+                    <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+                <span class="forecast-temp-top-1">-6°C</span>
+                <span class="forecast-temp-bottom-1">-8°C</span>
+            </div>
+            `;
+
+  forecastHTML =
+    forecastHTML +
+    `
+  <div class="row row-3">
+            <div class="col">
+                <p>fri
+                    <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="" width="36" />
+                </p>
+                <div class="forecast-weather-1" id="forecast1">
+                    <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+                <span class="forecast-temp-top-1">-4°C</span>
+                <span class="forecast-temp-bottom-1">-6°C</span>
+            </div>
+            `;
+
+  forecastHTML =
+    forecastHTML +
+    `
+  <div class="row row-3">
+            <div class="col">
+                <p>sat
+                    <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="" width="36" />
+                </p>
+                <div class="forecast-weather-1" id="forecast1">
+                    <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+                <span class="forecast-temp-top-1">-3°C</span>
+                <span class="forecast-temp-bottom-1">-4°C</span>
+            </div>
+            `;
+
+  forecastHTML =
+    forecastHTML +
+    `
+  <div class="row row-3">
+            <div class="col">
+                <p>sun
+                    <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="" width="36" />
+                </p>
+                <div class="forecast-weather-1" id="forecast1">
+                    <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+                <span class="forecast-temp-top-1">-3°C</span>
+                <span class="forecast-temp-bottom-1">-6°C</span>
+            </div>
+            `;
+  forecastHTML = forecastHTML+ `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function search(event) {
