@@ -16,7 +16,7 @@ function displayForecast() {
   forecastHTML =
     forecastHTML +
     `
-  <div class="row row-3">
+  
             <div class="col">
                 <p>wed
                     <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="" width="36" />
@@ -26,13 +26,13 @@ function displayForecast() {
                 </div>
                 <span class="forecast-temp-top-1">-4°C</span>
                 <span class="forecast-temp-bottom-1">-7°C</span>
-            </div>
+            
             `;
 
   forecastHTML =
     forecastHTML +
     `
-  <div class="row row-3">
+  
             <div class="col">
                 <p>thu
                     <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="" width="36" />
@@ -42,13 +42,13 @@ function displayForecast() {
                 </div>
                 <span class="forecast-temp-top-1">-6°C</span>
                 <span class="forecast-temp-bottom-1">-8°C</span>
-            </div>
+            
             `;
 
   forecastHTML =
     forecastHTML +
     `
-  <div class="row row-3">
+  
             <div class="col">
                 <p>fri
                     <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="" width="36" />
@@ -58,13 +58,13 @@ function displayForecast() {
                 </div>
                 <span class="forecast-temp-top-1">-4°C</span>
                 <span class="forecast-temp-bottom-1">-6°C</span>
-            </div>
+           
             `;
 
   forecastHTML =
     forecastHTML +
     `
-  <div class="row row-3">
+  
             <div class="col">
                 <p>sat
                     <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="" width="36" />
@@ -74,13 +74,13 @@ function displayForecast() {
                 </div>
                 <span class="forecast-temp-top-1">-3°C</span>
                 <span class="forecast-temp-bottom-1">-4°C</span>
-            </div>
+            
             `;
 
   forecastHTML =
     forecastHTML +
     `
-  <div class="row row-3">
+  
             <div class="col">
                 <p>sun
                     <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="" width="36" />
@@ -90,9 +90,9 @@ function displayForecast() {
                 </div>
                 <span class="forecast-temp-top-1">-3°C</span>
                 <span class="forecast-temp-bottom-1">-6°C</span>
-            </div>
+            
             `;
-  forecastHTML = forecastHTML+ `</div>`;
+  forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
