@@ -8,7 +8,8 @@ let day = days[now.getDay()];
 
 li.innerHTML = `${day} ${date}, ${hours}:${minutes}`;
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -36,11 +37,11 @@ function displayForecast() {
 
 function search(event) {
   event.preventDefault();
-  let apiKey = "ad793a6d772939c31783de5822791acf";
+  let apiKey = "512dt820d5aa382ofe0da024901542b3";
   let city = document.querySelector("#search-text-input");
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city.value}&appid=${apiKey}&units=metric`;
 
-  axios.get(apiUrl).then(displayWeatherCondition);
+  https: axios.get(apiUrl).then(displayWeatherCondition);
   console.log(apiUrl);
   let searchInput = document.querySelector("#search-text-input");
   let h1 = document.querySelector("h1");
@@ -55,6 +56,14 @@ let form = document.querySelector(".search-form");
 form.addEventListener("submit", search);
 console.log(form);
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "512dt820d5aa382ofe0da024901542b3";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${coordinate.lon}&lat=${coordinate.lat}&key=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#currentTemperature").innerHTML = Math.round(
@@ -65,5 +74,6 @@ function displayWeatherCondition(response) {
   document.querySelector("#windSpeed").innerHTML = Math.round(
     response.data.wind.speed
   );
-  displayForecast();
+  getForecast(response.data.coord);
 }
+search("Tallinn");
