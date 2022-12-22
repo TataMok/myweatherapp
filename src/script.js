@@ -76,6 +76,11 @@ let form = document.querySelector(".search-form");
 form.addEventListener("submit", search);
 console.log(form);
 
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
 function getForecast(coordinates) {
   console.log(coordinates);
   let apiKey = "512dt820d5aa382ofe0da024901542b3";
