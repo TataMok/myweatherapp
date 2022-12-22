@@ -1,35 +1,55 @@
-let now = new Date();
-let li = document.querySelector("li");
-let date = now.getDate();
-let hours = now.getHours();
-let minutes = now.getMinutes();
-let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-let day = days[now.getDay()];
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if ((hours, 10)) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if ((minutes, 10)) {
+    minutes = `0${minutes}`;
+  }
 
-li.innerHTML = `${day} ${date}, ${hours}:${minutes}`;
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[now.getDay()];
+  return `${day} ${hours}:${minutes}`;
+}
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
 
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
   let days = ["wed", "thu", "fri", "sat", "sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-  
-            <div class="col">
-                <p>${day}
-                    <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="" width="36" />
-                </p>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
+           <div class="col">
+                <div class="weather-forecast-date">${formatDay(forecastDay.dt)}
+                    <img src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                      forecastDay.weather[0].icon
+                    }.png" alt="" width="36" />
+                </di>
                 <div class="forecast-weather-1" id="forecast1">
                     <i class="fa-solid fa-cloud-sun"></i>
                 </div>
-                <span class="forecast-temp-top-1">-4°C</span>
-                <span class="forecast-temp-bottom-1">-7°C</span>
+                <span class="forecast-temp-top-1"> ${Math.round(
+                  forecastDay.temp.max
+                )}°C</span>
+                <span class="forecast-temp-bottom-1"> ${Math.round(
+                  forecastDay.temp.min
+                )}°C</span>
             
             `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -64,16 +84,29 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(displayForecast);
 }
 
-function displayWeatherCondition(response) {
-  document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#currentTemperature").innerHTML = Math.round(
-    response.data.main.temp
+function displayTemperature(response) {
+  let temperatureElement = document.querySelector("#temperature");
+  let cityElement = document.querySelector("#city");
+  let descriplionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
+
+  celsiusTemperature = response.data.main.temp;
+
+  cityElement.innerHTML = response.data.name;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  descriplionElement.innerHTML = response.data.weather[0].descriplion;
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.setAttribute(
+    "src",
+    `https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.weather[0].icon}.png`
   );
-  console.log(response.data.main.temp);
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#windSpeed").innerHTML = Math.round(
-    response.data.wind.speed
-  );
+  iconElement.setAttribute("alt", response.data.weather[0].descriplion);
+
   getForecast(response.data.coord);
 }
 search("Tallinn");
