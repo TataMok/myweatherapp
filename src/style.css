@@ -1,13 +1,22 @@
 body {
   font-family: arial, sans-serif;
-  color:antiquewhite;
+  color: antiquewhite;
+}
+div.container {
+  display: block;
+  margin: 100px auto;
   background-image: url(`https://images.pexels.com/photos/326058/pexels-photo-326058.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2`);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 
+  max-width: 800px;
 }
-.row-3 {
+form {
+  margin: 0 auto;
+  padding: 20px;
+}
+.row {
   text-align: center;
   color: white;
   margin: 20px 0 20px 0;
