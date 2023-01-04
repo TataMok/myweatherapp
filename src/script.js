@@ -20,40 +20,40 @@ function formatDay(timestamp) {
 
   return days[day];
 }
-
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["wed", "thu", "fri", "sat", "sun"];
   forecast.forEach(function (forecastDay, index) {
     if (index < 5) {
       forecastHTML =
         forecastHTML +
         `
            <div class="col">
-                <div class="weather-forecast-date">${formatDay(forecastDay.dt)}
-                    <img src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
-                      forecastDay.weather[0].icon
-                    }.png" alt="" width="36" />
-                </di>
-                <div class="forecast-weather-1" id="forecast1">
-                    <i class="fa-solid fa-cloud-sun"></i>
+                <div class="weather-forecast-date">${formatDay(
+                  forecastDay.time
+                )}
                 </div>
+                <div class="forecast-weather-1">
+                <img src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                  forecastDay.condition.icon
+                }.png" alt="" width="36" />
+            </div>
                 <span class="forecast-temp-top-1"> ${Math.round(
-                  forecastDay.temp.max
+                  forecastDay.temperature.maximum
                 )}°C</span>
                 <span class="forecast-temp-bottom-1"> ${Math.round(
-                  forecastDay.temp.min
+                  forecastDay.temperature.minimum
                 )}°C</span>
-            
+                  </div>
             `;
     }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+
 
 function search(event) {
   event.preventDefault();
