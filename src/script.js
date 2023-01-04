@@ -57,24 +57,29 @@ function displayForecast(response) {
 
 function search(event) {
   event.preventDefault();
-  let apiKey = "512dt820d5aa382ofe0da024901542b3";
-  let city = document.querySelector("#search-text-input");
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city.value}&appid=${apiKey}&units=metric`;
 
-  https: axios.get(apiUrl).then(displayWeatherCondition);
-  console.log(apiUrl);
   let searchInput = document.querySelector("#search-text-input");
   let h1 = document.querySelector("h1");
   if (searchInput.value) {
     h1.innerHTML = `Searching for ${searchInput.value}`;
+    searchCity(searchInput.value);
   } else {
     h1.innerHTML = undefined;
     alert("Please type a city");
   }
 }
+
+function searchCity(city) {
+  let apiKey = "512dt820d5aa382ofe0da024901542b3";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayTemperature);
+}
 let form = document.querySelector(".search-form");
 form.addEventListener("submit", search);
 console.log(form);
+
 
 function handleSubmit(event) {
   event.preventDefault();
