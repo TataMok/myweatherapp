@@ -121,26 +121,6 @@ searchCity("Tallinn");
 
 //current-location-button
 
-function showLocWeather(response) {
-  let temperature = Math.round(response.data.main.temp);
-  let displayTemperature = document.querySelector("#temperature");
-  displayTemperature.innerHTML = temperature;
-
-  let location = response.data.name;
-
-  let city = document.querySelector("#city");
-  city.innerHTML = location;
-
-  document.querySelector("#description").innerHTML =
-    response.data.weather[0].main;
-  document.querySelector("#humidity").innerHTML = Math.round(
-    response.data.main.humidity
-  );
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
-  );
-}
-
 function searchLocation(position) {
   let long = position.coords.longitude;
   let lat = position.coords.latitude;
@@ -148,15 +128,15 @@ function searchLocation(position) {
   let units = "metric";
 
   let apiKey = "512dt820d5aa382ofe0da024901542b3";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${long}&lat=${lat}&key=${apiKey}&units=metric`;
   console.log(apiUrl);
-  
-  axios.get(apiUrl).then(showLocWeather);
+
+  axios.get(apiUrl).then(displayTemperature);
 }
 
 function navigatePosition() {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-let currentLocationButton = document.querySelector("#location");
+let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", navigatePosition);
