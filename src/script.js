@@ -54,7 +54,6 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 
-
 function search(event) {
   event.preventDefault();
 
@@ -79,7 +78,6 @@ function searchCity(city) {
 let form = document.querySelector(".search-form");
 form.addEventListener("submit", search);
 console.log(form);
-
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -120,3 +118,45 @@ function displayTemperature(response) {
   getForecast(response.data.coordinates);
 }
 searchCity("Tallinn");
+
+//current-location-button
+
+function showLocWeather(response) {
+  let temperature = Math.round(response.data.main.temp);
+  let displayTemperature = document.querySelector("#temperature");
+  displayTemperature.innerHTML = temperature;
+
+  let location = response.data.name;
+
+  let city = document.querySelector("#city");
+  city.innerHTML = location;
+
+  document.querySelector("#description").innerHTML =
+    response.data.weather[0].main;
+  document.querySelector("#humidity").innerHTML = Math.round(
+    response.data.main.humidity
+  );
+  document.querySelector("#wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
+}
+
+function searchLocation(position) {
+  let long = position.coords.longitude;
+  let lat = position.coords.latitude;
+
+  let units = "metric";
+
+  let apiKey = "58a6775f97527351bf6c6966e209be39";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
+  console.log(apiUrl);
+
+  axios.get(apiUrl).then(showLocWeather);
+}
+
+function navigatePosition() {
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
+
+let currentLocationButton = document.querySelector("#location");
+currentLocationButton.addEventListener("click", navigatePosition);
