@@ -16,6 +16,11 @@ form {
   margin: 0 auto;
   padding: 20px;
 }
+.humidity
+.windSpeed {
+  text-align: left;
+  
+}
 .row {
   text-align: center;
   color: white;

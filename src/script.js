@@ -147,10 +147,10 @@ function searchLocation(position) {
 
   let units = "metric";
 
-  let apiKey = "58a6775f97527351bf6c6966e209be39";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
+  let apiKey = "512dt820d5aa382ofe0da024901542b3";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
   console.log(apiUrl);
-
+  
   axios.get(apiUrl).then(showLocWeather);
 }
 
